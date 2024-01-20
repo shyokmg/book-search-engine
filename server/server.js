@@ -9,7 +9,10 @@ const db = require('./config/connection');
 // const routes = require('./routes');
 
 const app = express();
-const server = new ApolloServer()
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
 
 const PORT = process.env.PORT || 3001;
 
