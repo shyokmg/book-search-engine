@@ -1,6 +1,6 @@
-const typeDefs = `
+const typeDefs = `#graphql
 input SaveBookInput {
-    bookId: ID
+    bookId: String
     authors: [String]
     description: String
     title: String
@@ -13,12 +13,12 @@ type User {
     username: String
     email: String
     password: String
-    bookCount: Integer
-    savedBooks: [Book]!
+    bookCount: Int
+    savedBooks: [Book]
 }
 
 type Book {
-    bookId: ID
+    bookId: String
     authors: [String]
     description: String
     title: String
@@ -33,12 +33,12 @@ type Auth {
 
 type Query {
     me: User
-}
+} 
 
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    savedBook(input: SaveBookInput): User
+    saveBook(input: SaveBookInput): User
     removeBook(bookId: ID!): User
 }
 `;
