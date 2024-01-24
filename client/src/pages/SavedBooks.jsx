@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import {
   Container,
   Card,
@@ -7,23 +6,23 @@ import {
   Col
 } from 'react-bootstrap';
 
-import { useQuery, useApolloClient } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-
 import { GET_ME } from '../utils/queries'
 import { REMOVE_BOOK } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
-  
+  // use the useQuery() Hook to execute the GET_ME query on load and save it to a variable named userData
   const { loading, data } = useQuery(GET_ME, {
+    // add poll interval to fetch latest data
     pollInterval: 100,
   });
   
   const userData = data?.me || {}
 
-  
+  // use the useMutation() Hook to execute the REMOVE_BOOK mutation
   const [removeBook, {error}] = useMutation(REMOVE_BOOK, {
     refetchQueries: [
       GET_ME,
@@ -39,7 +38,6 @@ const SavedBooks = () => {
     }
 
     try {
-      // const response = await deleteBook(bookId, token);
       const { data } = await removeBook( {
         variables: {
           bookId
@@ -55,7 +53,6 @@ const SavedBooks = () => {
   if (loading) {
     return <h2>LOADING...</h2>;
   } 
-  
 
   return (
     <>

@@ -30,6 +30,7 @@ const SearchBooks = () => {
     return () => saveBookIds(savedBookIds);
   });
 
+  // use the useMutation() Hook to execute the SAVE_BOOK mutation
   const [saveBook, { error }] = useMutation(SAVE_BOOK)
 
   // create method to search for books and set state on form submit
