@@ -7,10 +7,8 @@ import {
   Col
 } from 'react-bootstrap';
 
-import { useQuery } from '@apollo/client';
+import { useQuery, useApolloClient } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-
-// import { getMe, deleteBook } from '../utils/API';
 
 import { GET_ME } from '../utils/queries'
 import { REMOVE_BOOK } from '../utils/mutations';
@@ -19,9 +17,13 @@ import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
   
-  const { loading, data } = useQuery(GET_ME);
-  const userData =  data?.me || {};
+  const { loading, data } = useQuery(GET_ME, {
+    pollInterval: 100,
+  });
+  
+  const userData = data?.me || {}
 
+  
   const [removeBook, {error}] = useMutation(REMOVE_BOOK, {
     refetchQueries: [
       GET_ME,
@@ -52,7 +54,8 @@ const SavedBooks = () => {
   // if data isn't here yet, say so
   if (loading) {
     return <h2>LOADING...</h2>;
-  }
+  } 
+  
 
   return (
     <>
