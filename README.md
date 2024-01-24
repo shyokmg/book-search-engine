@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a Google Books API search engine built with GraphQL APU and Apollo Server. It searches your favorite books with a brief information about them, and can have the option to save the books to your own personal books page.
+This is a Google Books API search engine built with GraphQL API and Apollo Server. It searches your favorite books with a brief information about them, and can have the option to save the books to your own personal books page.
 
 ## Table of Contents
 
